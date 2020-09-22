@@ -1,14 +1,18 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
 
-var app = express();
+import routes from './routes/index.js'
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+var app = express()
+
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+
+routes.loadRoutes(app)
 
 app.listen(3000,	()	=>	{
-  console.log('Ntalk	no	ar.');
-});
+  console.log('Server is running')
+})
